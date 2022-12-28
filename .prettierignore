@@ -1,0 +1,11 @@
+build/
+coverage/
+logs/
+
+
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+scripts/*
+scripts
