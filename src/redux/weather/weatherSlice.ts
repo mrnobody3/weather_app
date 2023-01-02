@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { isError } from "../../helpers/getError";
 import { ICurrentWeather } from "../../types/weather";
-import { fetchWeatherByGeo } from "./operations";
+import { fetchWeatherByGeo, updateCityWeather } from "./operations";
 
 interface UsersState {
   entities: ICurrentWeather[];
@@ -19,7 +20,11 @@ const weatherSlice = createSlice({
   name: "weather",
   initialState,
   reducers: {
-    // standard reducer logic, with auto-generated action types per reducer
+    removeItemById: (state, action: PayloadAction<number>) => {
+      state.entities = state.entities.filter(
+        (item) => item.id !== action.payload,
+      );
+    },
   },
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
@@ -34,7 +39,26 @@ const weatherSlice = createSlice({
         state.loading = false;
       },
     );
+    builder.addCase(updateCityWeather.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(
+      updateCityWeather.fulfilled,
+      (
+        state,
+        action: PayloadAction<{ data: ICurrentWeather; idx: number }>,
+      ) => {
+        state.entities.splice(action.payload.idx, 1, action.payload.data);
+        state.loading = false;
+      },
+    );
+    builder.addMatcher(isError, (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
+      state.loading = false;
+    });
   },
 });
 
+export const { removeItemById } = weatherSlice.actions;
 export const weatherReducer = weatherSlice.reducer;
