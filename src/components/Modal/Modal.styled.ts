@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledOverlay = styled.div`
-  z-index: 9999;
+  z-index: 100;
   position: absolute;
   top: 0;
   left: 0;
