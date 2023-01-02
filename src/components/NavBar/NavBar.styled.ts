@@ -1,18 +1,10 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { device } from "../../utils/device";
 
 export const NavList = styled.ul`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 40px;
-
-  @media ${device.desktop} {
-    flex-direction: row;
-    gap: 80px;
-  }
 `;
 
 export const NavListItem = styled.li`
@@ -22,15 +14,21 @@ export const NavListItem = styled.li`
 
 export const NavLinkItem = styled(NavLink)`
   font-weight: 500;
-  font-size: 14px;
+  font-size: 24px;
   line-height: 1.38;
-  color: ${({ theme }) => theme.colors.black};
+  color: #1c1c1c;
+  cursor: pointer;
 
   &:hover,
   &:focus,
-  &:active {
-    color: ${({ theme }) => theme.colors.accent};
-    transition: color ${(p) => p.theme.animation.cubic};
+  &.active {
+    color: #ff5c1f;
     text-decoration: underline;
+  }
+
+  &.active {
+    color: #c51313;
+    text-decoration: underline;
+    cursor: default;
   }
 `;
