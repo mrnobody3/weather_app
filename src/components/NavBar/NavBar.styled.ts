@@ -16,18 +16,18 @@ export const NavLinkItem = styled(NavLink)`
   font-weight: 500;
   font-size: 24px;
   line-height: 1.38;
-  color: #1c1c1c;
+  color: white;
   cursor: pointer;
 
   &:hover,
   &:focus,
   &.active {
-    color: #ff5c1f;
+    color: #0991ef;
     text-decoration: underline;
   }
 
   &.active {
-    color: #c51313;
+    color: #6bb1dc;
     text-decoration: underline;
     cursor: default;
   }

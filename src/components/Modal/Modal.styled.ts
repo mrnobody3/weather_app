@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledOverlay = styled.div`
-  z-index: 100;
+  z-index: 9999;
   position: absolute;
   top: 0;
   left: 0;
@@ -14,10 +14,11 @@ export const StyledOverlay = styled.div`
 `;
 
 export const StyleBox = styled.div`
+  position: relative;
   display: block;
   background: white;
-  width: 500px;
-  height: 500px;
-  padding: 1rem;
-  border-radius: 1rem;
+  width: 600px;
+  height: 600px;
+  padding: 20px;
+  //border-radius: 1rem;
 `;
