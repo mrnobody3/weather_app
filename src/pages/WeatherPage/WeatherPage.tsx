@@ -1,13 +1,13 @@
 import React from "react";
 import { Box, Container } from "@mui/material";
-import SearchForm from "../../components/SearchForm";
-import WeatherList from "../../components/WeatherList";
+import SearchForm from "./SearchForm";
+import WeatherList from "./WeatherList";
 
 const WeatherPage = () => {
   return (
-    <Box component="section" sx={{ py: "50px", height: "100%" }}>
+    <Box component="section" sx={{ pb: "50px", height: "100%" }}>
+      <SearchForm />
       <Container>
-        <SearchForm />
         <WeatherList />
       </Container>
     </Box>

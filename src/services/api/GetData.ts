@@ -32,6 +32,7 @@ export const fetchHourlyWeather = async (name: string) => {
     params: {
       q: name,
       appid: API_KEY,
+      units: "metric",
     },
   });
   return data;

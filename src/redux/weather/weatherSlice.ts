@@ -15,7 +15,6 @@ const initialState = {
   error: null,
 } as UsersState;
 
-// Then, handle actions in your reducers:
 const weatherSlice = createSlice({
   name: "weather",
   initialState,
@@ -27,7 +26,6 @@ const weatherSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(fetchWeatherByGeo.pending, (state) => {
       state.loading = true;
       state.error = null;

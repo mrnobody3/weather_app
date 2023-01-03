@@ -1,8 +1,8 @@
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Container } from "@mui/material";
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { fetchCountryList } from "../../services/api/GetData";
-import QueryList from "../QueryList";
-import SearchInput from "../SearchInput";
+import { fetchCountryList } from "../../../services/api/GetData";
+import QueryList from "../../../components/QueryList";
+import SearchInput from "../../../components/SearchInput";
 
 const SearchForm: React.FC = () => {
   const [list, setList] = useState([]);
@@ -47,20 +47,27 @@ const SearchForm: React.FC = () => {
   return (
     <Box
       sx={{
+        bgcolor: "gray",
         position: "relative",
-        display: "flex",
-        alignItems: "flex-end",
-        flexDirection: "column",
       }}
     >
-      <SearchInput onChange={handleChange} value={q} onClear={handleClear} />
-      {isLoading && (
-        <Box sx={{ position: "absolute", top: "57px", right: "275px" }}>
-          <CircularProgress />
-        </Box>
-      )}
-      {error && <div>Whoops. Somethings wrong!</div>}
-      {list.length !== 0 && <QueryList data={list} />}
+      <Container
+        sx={{
+          bgcolor: "gray",
+          display: "flex",
+          alignItems: "flex-end",
+          flexDirection: "column",
+        }}
+      >
+        <SearchInput onChange={handleChange} value={q} onClear={handleClear} />
+        {isLoading && (
+          <Box sx={{ position: "absolute", top: "0", right: "570px" }}>
+            <CircularProgress />
+          </Box>
+        )}
+        {error && <div>Whoops. Somethings wrong!</div>}
+        {list.length !== 0 && <QueryList data={list} onClear={handleClear} />}
+      </Container>
     </Box>
   );
 };

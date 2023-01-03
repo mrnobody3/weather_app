@@ -15,19 +15,25 @@ interface IData {
 
 interface IQueryList {
   data: IData[];
+  onClear: () => void;
 }
 
-const QueryList: React.FC<IQueryList> = ({ data }) => {
+const QueryList: React.FC<IQueryList> = ({ data, onClear }) => {
   const dispatch = useAppDispatch();
 
+  const onHandleAddItem = (name: string) => {
+    dispatch(fetchWeatherByGeo(name));
+    onClear();
+  };
   return (
     <List
       sx={{
-        width: "250px",
+        width: "300px",
         position: "absolute",
-        top: "57px",
-        zIndex: "100",
-        p: "5px",
+        bgcolor: "gray",
+        zIndex: "105",
+        top: "44px",
+        p: "5px 1px 5px 7px",
         borderRadius: "0 0 20px 20px",
       }}
     >
@@ -38,7 +44,7 @@ const QueryList: React.FC<IQueryList> = ({ data }) => {
           secondaryAction={
             <IconButton
               aria-label="comment"
-              onClick={() => dispatch(fetchWeatherByGeo(item.name))}
+              onClick={() => onHandleAddItem(item.name)}
             >
               <AddCircleOutlineIcon />
             </IconButton>
